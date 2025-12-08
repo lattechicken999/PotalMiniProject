@@ -45,6 +45,6 @@ public class PotalCameraMove : MonoBehaviour
         transform.position = _myPotarCenter.TransformPoint(_movePosition);
 
         transform.LookAt(gameObject.transform.parent);
-        _cam.nearClipPlane = (transform.parent.transform.position - transform.position).z;
+        _cam.nearClipPlane = Mathf.Abs((_myPotarCenter.position - transform.position).z);
     }
 }

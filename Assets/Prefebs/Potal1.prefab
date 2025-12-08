@@ -33,7 +33,6 @@ Transform:
   - {fileID: 3256063440794693661}
   - {fileID: 8623714600727871747}
   - {fileID: 7344295771818077534}
-  - {fileID: 7779133018930230057}
   - {fileID: 2512040461417307603}
   - {fileID: 4580539599848071973}
   m_Father: {fileID: 0}
@@ -62,6 +61,7 @@ GameObject:
   - component: {fileID: 7467932758926564638}
   - component: {fileID: 2148633837316982199}
   - component: {fileID: 6043797831535427771}
+  - component: {fileID: 1286406288466851488}
   m_Layer: 6
   m_Name: PotalArea
   m_TagString: potal
@@ -162,6 +162,18 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1286406288466851488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1241671811007177793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b7bc258deb0ddc4dba5c6a074cf443e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PotalTeleport
 --- !u!1 &3250564912135537088
 GameObject:
   m_ObjectHideFlags: 0
@@ -305,59 +317,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PotalCameraMove
   _playerTransform: {fileID: 0}
   _otherPotalTransform: {fileID: 0}
---- !u!1 &4988613716864329299
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7779133018930230057}
-  - component: {fileID: 4616774291220992494}
-  m_Layer: 6
-  m_Name: AdjArea
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &7779133018930230057
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4988613716864329299}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 8904800535899586013}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &4616774291220992494
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4988613716864329299}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 1.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5372575773228727527
 GameObject:
   m_ObjectHideFlags: 0

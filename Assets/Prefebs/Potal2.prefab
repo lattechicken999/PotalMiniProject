@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7710908303583610263}
   - component: {fileID: 5430671440053091670}
   - component: {fileID: 574582223906808823}
+  - component: {fileID: 345866851552334071}
   m_Layer: 7
   m_Name: PotalArea
   m_TagString: potal
@@ -112,6 +113,18 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &345866851552334071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 77934912266245059}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b7bc258deb0ddc4dba5c6a074cf443e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PotalTeleport
 --- !u!1 &727728664388238347
 GameObject:
   m_ObjectHideFlags: 0
@@ -257,7 +270,6 @@ Transform:
   - {fileID: 6732185356725868818}
   - {fileID: 5740244099226609334}
   - {fileID: 8084191268171220876}
-  - {fileID: 3448487995832533486}
   - {fileID: 4708666577044611215}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -416,59 +428,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PotalCameraMove
   _playerTransform: {fileID: 0}
   _otherPotalTransform: {fileID: 0}
---- !u!1 &2519148581925122653
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3448487995832533486}
-  - component: {fileID: 4555382529500636263}
-  m_Layer: 7
-  m_Name: AdjArea
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3448487995832533486
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2519148581925122653}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -1, z: -0, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 9113387530460048791}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &4555382529500636263
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2519148581925122653}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 1.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5873215970296324914
 GameObject:
   m_ObjectHideFlags: 0

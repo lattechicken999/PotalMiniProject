@@ -13,6 +13,7 @@ public class PotalManager : Singleton<PotalManager>
     private Transform _potal1AreaTransform, _potal2AreaTransform;
     private Renderer _potal1Renderer, _potal2Renderer;
 
+    
     protected override void init()
     {
         _potal1Instane = Instantiate(_potal1Prefeb);
