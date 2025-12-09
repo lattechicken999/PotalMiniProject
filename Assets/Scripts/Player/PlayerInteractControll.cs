@@ -8,6 +8,8 @@ public class PlayerInteractControll : MonoBehaviour
     public float _rayDist = 20f;
     private Camera _cam;
     private InputAction _selectAction;
+    private InputAction _dropAction;
+    private InputAction _throwAction;
     private Transform _selectedTransform;
 
     private Ray ray;
@@ -22,18 +24,35 @@ public class PlayerInteractControll : MonoBehaviour
     {
         _cam = Camera.main;
         _selectAction = InputSystem.actions["Attack"];
+        _dropAction = InputSystem.actions["Drop"];
+        _throwAction = InputSystem.actions["Throw"];
         _selectedTransform = null;
         _rayOrigins = new Stack<Vector3>();
     }
     private void OnEnable()
     {
         _selectAction.performed += SelectObj;
+        _dropAction.performed += DropObj;
+        _throwAction.performed += ThrowObj;
     }
     private void OnDisable()
     {
         _selectAction.performed -= SelectObj;
+        _dropAction.performed -= DropObj;
+        _throwAction.performed -= ThrowObj;
     }
 
+    private void ThrowObj(InputAction.CallbackContext ctx)
+    {
+        var camDir = transform.Find("CinemachineCamera");
+        _selected?.GetComponent<IInteractable>()?.Throw(camDir.forward);
+        _selected = null;
+    }
+    private void DropObj(InputAction.CallbackContext ctx)
+    {
+        _selected?.GetComponent<IInteractable>()?.Drop();
+        _selected = null;
+    }
     private void SelectObj(InputAction.CallbackContext ctx)
     {
         ray = _cam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
@@ -77,7 +96,8 @@ public class PlayerInteractControll : MonoBehaviour
             if(_rayHit.collider.CompareTag("interactable"))
             {
                 _selected = _rayHit.collider.transform;
-                _selected.GetComponent<IInteractable>()?.Grab(_rayOrigins,transform);
+                _selected.GetComponent<IInteractable>()?.Grab(transform);
+                
             }
         }
     }

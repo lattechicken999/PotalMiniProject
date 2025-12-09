@@ -280,6 +280,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1218319129801729664, guid: 32bc10675d4e91749a4c8c10b800eafa, type: 3}
+      propertyPath: m_Interpolate
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3667363050500317363, guid: 32bc10675d4e91749a4c8c10b800eafa, type: 3}
       propertyPath: m_Name
       value: Player 1
@@ -779,7 +783,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.49
+  near clip plane: 0.01
   far clip plane: 1000
   field of view: 60.000004
   orthographic: 0
