@@ -66,9 +66,9 @@ public class PotalManager : Singleton<PotalManager>
     {
         if(_potal1Instane.activeSelf && _potal2Instane.activeSelf)
         {
-            if (_potal1Instane.transform == potal.gameObject)
+            if (_potal1Instane == potal.parent.gameObject)
                 return _potal2AreaTransform;
-            if (_potal2Instane == potal.gameObject)
+            if (_potal2Instane == potal.parent.gameObject)
                 return _potal1AreaTransform;
         }
         return null;

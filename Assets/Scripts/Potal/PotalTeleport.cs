@@ -1,10 +1,12 @@
-﻿using UnityEngine;
+﻿using System.Diagnostics;
+using UnityEngine;
 
 public class PotalTeleport : MonoBehaviour
 {
     private Transform _otherPotalCenter;
     private GameObject _copyObj;
 
+    private Vector3 Degub;
     private void Awake()
     {
         _otherPotalCenter = null;
@@ -13,11 +15,11 @@ public class PotalTeleport : MonoBehaviour
     // 복사체를 상대 포탈에 만듬
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("interactable"))
+        if(other.CompareTag("interactable") || other.CompareTag("Player"))
         {
             _otherPotalCenter = PotalManager.Instance.GetOtherPotalTransform(transform);
             _copyObj = Instantiate(other.gameObject);
-
+            _copyObj.GetComponent<Collider>().enabled = false;
             SynCopyObjTransform(other);
         }
     }
@@ -28,6 +30,14 @@ public class PotalTeleport : MonoBehaviour
     {
         if (_copyObj == null) return;
         SynCopyObjTransform(other);
+
+        if(other.CompareTag("Player"))
+        {
+            if(transform.InverseTransformPoint(other.transform.position).y < 0)
+            {
+                TeleportObject(other);
+            }
+        }
     }
 
     //포탈 나감
@@ -37,28 +47,48 @@ public class PotalTeleport : MonoBehaviour
     {
         if (_copyObj == null) return;
         //위치 동기화 하고 텔레포트 시킴 (안하면 텔레포트 하자마자 상태 포탈에 닿음)
-        SynCopyObjTransform(other);
-        if(transform.TransformPoint(other.transform.position).z <0)
+        if (other.CompareTag("interactable"))
         {
-            //충돌체가 뒤로 빠지면 이동 시킴
-            other.transform.position = _copyObj.transform.position;
-            other.transform.rotation = _copyObj.transform.rotation;
+            if (other.gameObject.GetComponent<IInteractable>().GetGrabed()) { }
+            else if (transform.InverseTransformPoint(other.transform.position).y < 0)
+            {
+                SynCopyObjTransform(other);
+                TeleportObject(other);
+            }
         }
         Destroy(_copyObj);
     }
     
-    private void SynCopyObjTransform(Collider other)
+    private void SynCopyObjTransform(Collider collisionObj)
     {
-        var copyObjPosition = new Vector3(-_otherPotalCenter.position.x, _otherPotalCenter.position.y, -_otherPotalCenter.position.z);
-
-        //진입 포탈 기준 로컬좌표계로 오브젝트가 바라봐야 할 방향 계산.
-        var copyLookPosition = transform.TransformPoint(other.transform.forward);
-        //반대편 포탈 기준으로 좌표 갱신
-        copyLookPosition = _otherPotalCenter.InverseTransformPoint(copyLookPosition);
-        //좌표 쉬프트
-        copyLookPosition = copyLookPosition - (copyLookPosition - copyObjPosition);
+        var copyObjPosition = transform.InverseTransformPoint(collisionObj.transform.position);
+        copyObjPosition = new Vector3(-copyObjPosition.x, -copyObjPosition.y, copyObjPosition.z);
+        copyObjPosition = _otherPotalCenter.TransformPoint(copyObjPosition);
         _copyObj.transform.position = copyObjPosition;
+
+        var copyLookPosition = transform.InverseTransformPoint(collisionObj.transform.position + collisionObj.transform.forward);
+        copyLookPosition = new Vector3(-copyLookPosition.x, -copyLookPosition.y, copyLookPosition.z);
+        copyLookPosition = _otherPotalCenter.TransformPoint(copyLookPosition);
         _copyObj.transform.LookAt(copyLookPosition);
+        Degub = copyLookPosition;
     }
-   
+    private void TeleportObject(Collider collisionObj)
+    {
+        //충돌체가 뒤로 빠지면 이동 시킴
+        collisionObj.transform.position = _copyObj.transform.position;
+        collisionObj.transform.rotation = _copyObj.transform.rotation;
+
+        var rigidbody = collisionObj.gameObject.GetComponent<Rigidbody>();
+        var velVector3 = rigidbody.linearVelocity;
+        velVector3 = transform.InverseTransformDirection(velVector3);
+        velVector3 = new Vector3(-velVector3.x, -velVector3.y, velVector3.z);
+        velVector3 = _otherPotalCenter.TransformDirection(velVector3);
+        rigidbody.linearVelocity = velVector3;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawSphere(Degub, 0.3f);
+    }
 }

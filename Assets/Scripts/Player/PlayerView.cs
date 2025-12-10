@@ -65,8 +65,8 @@ public class PlayerView : MonoBehaviour,IModel
         }
         else
         {
-            //_rig.linearVelocity = _moveVector.normalized * _moveSpeed * Time.fixedDeltaTime;
-            _rig.MovePosition(_rig.position + _moveVector.normalized * _moveSpeed/10 * Time.fixedDeltaTime);
+            _rig.linearVelocity = _moveVector.normalized * _moveSpeed * Time.fixedDeltaTime;
+            //_rig.MovePosition(_rig.position + _moveVector.normalized * _moveSpeed/10 * Time.fixedDeltaTime);
 
         }
 

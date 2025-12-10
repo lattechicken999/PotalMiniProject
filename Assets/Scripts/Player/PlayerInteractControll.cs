@@ -71,7 +71,7 @@ public class PlayerInteractControll : MonoBehaviour
                 //포탈에 닿았다면 레이를 다른 포탈에서 다시 쏘기
                 var leftDist = _rayDist - Vector3.Distance(_rayHit.point, ray.origin);
 
-                var otherPotalTransform = PotalManager.Instance.GetOtherPotalTransform(_rayHit.transform.parent);
+                var otherPotalTransform = PotalManager.Instance.GetOtherPotalTransform(_rayHit.transform);
 
                 //var newRayOrigin = otherPotalTransform.position +(_rayHit.point - _rayHit.transform.position);
                 var newRayOrigin = _rayHit.transform.InverseTransformPoint(_rayHit.point);
@@ -105,7 +105,7 @@ public class PlayerInteractControll : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawRay(Debugray1.origin, Debugray1.direction*10);
-        Gizmos.DrawRay(Debugray2.origin, Debugray2.direction*10);
+        Gizmos.DrawRay(Debugray1.origin, Debugray1.direction*100);
+        Gizmos.DrawRay(Debugray2.origin, Debugray2.direction*100);
     }
 }

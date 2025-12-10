@@ -10,12 +10,15 @@ public class CubeObj : MonoBehaviour, IInteractable
 
     private Transform _player;
     private Transform _parent;
+    private bool _isGrabed;
+    
 
     private void Awake()
     {
         _rig = GetComponent<Rigidbody>();
         _col = GetComponent<Collider>();
         gameObject.layer = LayerMask.NameToLayer("interactable");
+        _isGrabed = false;
     }
 
     public void Drop()
@@ -42,6 +45,7 @@ public class CubeObj : MonoBehaviour, IInteractable
         _col.isTrigger = true;
         _rig.useGravity = false;
         _rig.isKinematic = true;
+        _isGrabed = true;
 
         _parent = transform.parent;
         transform.SetParent(_player);
@@ -53,6 +57,12 @@ public class CubeObj : MonoBehaviour, IInteractable
         _col.isTrigger = false;
         _rig.useGravity = true;
         _rig.isKinematic = false;
+        _isGrabed = false;
         transform.SetParent(_parent);
+    }
+
+    public bool GetGrabed()
+    {
+        return _isGrabed;
     }
 }
