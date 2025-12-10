@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 3
   tags:
   - CinemachineTarget
+  - interactable
+  - potal
   layers:
   - Default
   - TransparentFX
@@ -15,8 +17,8 @@ TagManager:
   - Potal1
   - Potal2
   - Player
-  - 
-  - 
+  - StencilLayer
+  - interactable
   - 
   - 
   - 

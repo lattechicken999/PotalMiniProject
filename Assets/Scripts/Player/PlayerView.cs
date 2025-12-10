@@ -45,6 +45,7 @@ public class PlayerView : MonoBehaviour,IModel
 
     public void NotifyLookValue(Vector2 look)
     {
+        //if(look == Vector2.zero) return;
         transform.eulerAngles += new Vector3(0, look.x * _mouseSens, 0);
         _moveVector = Quaternion.AngleAxis(look.x * _mouseSens, Vector3.up) * _moveVector;
         _lookValue = Mathf.Clamp(_lookValue - (look.y * _mouseSens), _minLookValue, _maxLookValue);
